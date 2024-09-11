@@ -1,5 +1,6 @@
 package com.javatechie.aws.cicd.example;
 
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
+@Log4j2
 @SpringBootApplication
 @RestController
 @RequestMapping("/orders")
@@ -21,8 +22,10 @@ public class OrderServiceApplication {
 
     @GetMapping
     public List<Order> fetchOrders() {
+        log.info("Hello from my controller");
+        log.info("Initiating Order service");
         return orderDao.getOrders().stream().
-                sorted(Comparator.comparing(Order::getPrice)).collect(Collectors.toList());
+                sorted(Comparator.comparing(Order::getPrice)).toList();
     }
 
     public static void main(String[] args) {
