@@ -3,7 +3,7 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - mvn clean install
+      - mvn clean package
       - echo Logging in to Amazon ECR...
       - aws --version
       - REPOSITORY_URI=446814605682.dkr.ecr.ap-south-1.amazonaws.com/myrepo
