@@ -1,4 +1,4 @@
-package com.javatechie.orderservice;
+package com.zesn.orderservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

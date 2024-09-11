@@ -1,4 +1,4 @@
-package com.javatechie.orderservice;
+package com.zesn.orderservice;
 
 import org.springframework.stereotype.Repository;
 
