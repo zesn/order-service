@@ -7,7 +7,7 @@ phases:
       - echo Logging in to Amazon ECR...
       - aws --version
       - REPOSITORY_URI=446814605682.dkr.ecr.ap-south-1.amazonaws.com/myrepo
-      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin $REPOSITORY_URI
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 446814605682.dkr.ecr.ap-south-1.amazonaws.com
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
   build:
@@ -35,4 +35,4 @@ phases:
 artifacts:
   files:
     - imagedefinitions.json
-    - target/course-service.jar
+    - target/order-service.jar
