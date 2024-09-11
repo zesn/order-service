@@ -1,4 +1,4 @@
-package com.javatechie.aws.cicd.example;
+package com.javatechie.orderservice;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
