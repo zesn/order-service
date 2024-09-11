@@ -61,6 +61,20 @@
 						</includes>
 					</configuration>
 				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>3.2.0</version>
+					<configuration>
+						<archive>
+							<manifest>
+								<addClasspath>true</addClasspath>
+								<classpathPrefix>lib/</classpathPrefix>
+								<mainClass>com.zesn.orderservice.OrderServiceApplication</mainClass> <!-- Replace with your main class -->
+							</manifest>
+						</archive>
+					</configuration>
+				</plugin>
 
 				<!-- Failsafe Plugin for Integration Tests (Karate) -->
 				<plugin>
