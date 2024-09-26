@@ -5,6 +5,7 @@ import com.zesn.orderservice.OrderServiceApplication;
 import org.junit.jupiter.api.BeforeAll;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.env.AbstractEnvironment;
 
 
 public class KarateTestRunner {
@@ -15,6 +16,7 @@ public class KarateTestRunner {
     }
     @BeforeAll
     public static void setUpApp(){
+        System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, "test");
         SpringApplication.run(OrderServiceApplication.class, "this");
     }
 }
