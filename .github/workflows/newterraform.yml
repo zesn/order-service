@@ -51,6 +51,10 @@ on:
 
 permissions:
   contents: read
+env:
+  TF_VAR_region: ap-south-1                   # set this to your preferred AWS region, e.g. us-west-1
+  TF_VAR_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}                   # set this to your Amazon ECR repository name
+  TF_VAR_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }} 
 
 jobs:
   terraform:
