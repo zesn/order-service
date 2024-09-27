@@ -14,8 +14,7 @@ provider "aws" {
     secret_key = "${var.secret_key}"
 }
 resource "aws_instance" "app_server" {
-  ami           = "ami-06f855639265b5541" 
-  key_name = "dixita1"
+  ami           = "ami-06f855639265b5541"
   instance_type = "t2.micro"
 
   tags = {
