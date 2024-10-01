@@ -82,10 +82,10 @@ jobs:
     needs: build  # This job depends on the build job
 
     steps:
-      - name: Build with Maven
-        run: mvn -B clean install --file pom.xml
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+      - name: Build with Maven
+        run: mvn -B clean install --file pom.xml   
       - name: Verify JAR file exists
         run: test -f target/order-service.jar || (echo "JAR file not found! in docker state" && exit 1)
   
