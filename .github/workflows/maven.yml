@@ -57,9 +57,7 @@ jobs:
           # When you need the analysis to take place in a directory other than the one from which it was launched, default is .
           projectBaseDir: .
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 17
@@ -74,6 +72,12 @@ jobs:
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     #- name: Update dependency graph
     #  uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
+    #- name: compose docker image
+    #  run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+  compose:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
     - name: compose docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
   
