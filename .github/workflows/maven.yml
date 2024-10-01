@@ -89,9 +89,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: maven  
-      - name: Build with Maven
-        run: mvn -B clean install --file pom.xml   
+          cache: maven     
       - name: Verify JAR file exists
         run: test -f target/order-service.jar || (echo "JAR file not found! in docker state" && exit 1)
   
