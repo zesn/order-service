@@ -101,7 +101,7 @@ jobs:
         run: |
           docker build -t ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }} .
           docker tag ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/my-app:latest
-        working-directory: /app
+        working-directory: ./target/order-service.jar
       - name: Push Docker Image to Docker Hub
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }}
