@@ -15,10 +15,10 @@ on:
     branches: [ "main" ]
     
 env:
-  AWS_REGION: ap-south-1                   # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: myrepo                   # set this to your Amazon ECR repository name
+  AWS_REGION: us-east-1                  # set this to your preferred AWS region, e.g. us-west-1
+  ECR_REPOSITORY: my-app-repo                   # set this to your Amazon ECR repository name
   ECS_SERVICE: newtestservice              # set this to your Amazon ECS service name
-  ECS_CLUSTER: my-cluster                  # set this to your Amazon ECS cluster name
+  ECS_CLUSTER: project-1                  # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION: .aws/my-task-defination-revision5.json
                                                # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: myrepo                   # set this to the name of the container in the
@@ -108,9 +108,10 @@ jobs:
       - name: Build and Tag Docker Image
         run: |
           docker build -t ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }} .
-          docker tag ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/my-app:latest
+          docker pull nginx:latest
+          docker tag nginx:latest 446814605682.dkr.ecr.us-east-1.amazonaws.com/my-app-repo:latest
 
       - name: Push Docker Image to Docker Hub
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }}
-          docker push ${{ secrets.DOCKER_USERNAME }}/my-app:latest
+          docker push 446814605682.dkr.ecr.us-east-1.amazonaws.com/my-app-repo:latest
