@@ -31,10 +31,10 @@ on:
     branches: [ "main" ]
 
 env:
-  AWS_REGION: ap-south-1                       # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: myrepo                       # set this to your Amazon ECR repository name
+  AWS_REGION: us-east-1                       # set this to your preferred AWS region, e.g. us-west-1
+  ECR_REPOSITORY: my-app-repo                       # set this to your Amazon ECR repository name
   ECS_SERVICE: test-service                  # set this to your Amazon ECS service name
-  ECS_CLUSTER: my-cluster                      # set this to your Amazon ECS cluster name
+  ECS_CLUSTER: zesn-cluster                      # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION: .aws/my-task-defination-revision5.json 
                                                # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: myrepo                       # set this to the name of the container in the
@@ -86,18 +86,4 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
-    - name: Fill in the new image ID in the Amazon ECS task definition
-      id: task-def
-      uses: aws-actions/amazon-ecs-render-task-definition@v1
-      with:
-        task-definition: ${{ env.ECS_TASK_DEFINITION }}
-        container-name: ${{ env.CONTAINER_NAME }}
-        image: ${{ steps.build-image.outputs.image }}
-
-    - name: Deploy Amazon ECS task definition
-      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-      with:
-        task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: ${{ env.ECS_SERVICE }}
-        cluster: ${{ env.ECS_CLUSTER }}
-        wait-for-service-stability: true
+   
